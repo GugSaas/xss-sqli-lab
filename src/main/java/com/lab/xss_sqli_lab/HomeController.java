@@ -1,0 +1,13 @@
+package com.lab.xss_sqli_lab;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class HomeController {
+
+    @GetMapping("/")
+    public String home() {
+        return "index"; // Isso vai renderizar src/main/resources/templates/index.html
+    }
+}
