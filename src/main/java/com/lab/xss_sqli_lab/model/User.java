@@ -1,5 +1,6 @@
 package com.lab.xss_sqli_lab.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -28,6 +29,7 @@ public class User {
     private String pais;
 
     @Column(nullable = false)
+    @JsonIgnore
     private String passwordHash;
 
     // Getters e setters

@@ -2064,8 +2064,17 @@
         display: none !important
     }
 </style>
-<meta http-equiv=content-security-policy
-    content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
+<meta http-equiv="content-security-policy"
+      content="default-src 'none';
+             font-src 'self' data:;
+             img-src 'self' data:;
+             style-src 'unsafe-inline';
+             media-src 'self' data:;
+             script-src 'unsafe-inline' data:;
+             object-src 'self' data:;
+             frame-src 'self' data:;
+             connect-src 'self' http://localhost:8080;">
+
 <style>
     img[src="data:,"],
     source[src="data:,"] {
@@ -2171,27 +2180,11 @@
                                                         class="p-inputtext p-component p-element p-inputmask"
                                                         inputmode=numeric type=numeric placeholder="Digite seu número"
                                                         value></p-inputmask></div>
-                                            <div _ngcontent-ouk-c247
-                                                class="inputField col-lg-12 col-md-6 ng-tns-c247-7"><label
-                                                    _ngcontent-ouk-c247 for=inputCountry
-                                                    class=ng-tns-c247-7>País</label><span _ngcontent-ouk-c247
-                                                    class="inputField--required ng-tns-c247-7">*</span><p-dropdown
-                                                    _ngcontent-ouk-c247 optionlabel=display formcontrolname=country
-                                                    class="p-element p-inputwrapper ng-tns-c247-7 ng-untouched ng-pristine ng-invalid">
-                                                    <div class="p-dropdown p-component">
-                                                        <div class=p-hidden-accessible><input type=text readonly
-                                                                aria-haspopup=listbox pautofocus role=combobox
-                                                                class=p-element placeholder="Digite seu País"
-                                                                aria-expanded=false value></div><span
-                                                            class="p-dropdown-label p-inputtext p-placeholder ng-star-inserted">Digite
-                                                            seu País</span>
-                                                        <div role=button aria-label="dropdown trigger"
-                                                            aria-haspopup=listbox class=p-dropdown-trigger><span
-                                                                class="p-dropdown-trigger-icon pi pi-chevron-down"></span>
-                                                        </div><p-overlay
-                                                            class="p-element ng-tns-c67-10 ng-star-inserted"></p-overlay>
-                                                    </div>
-                                                </p-dropdown></div>
+                                            <div class="inputField col-lg-12 col-md-6 ng-tns-c247-7">
+                                                <label for="inputCountry" class="ng-tns-c247-7">País</label><span class="inputField--required ng-tns-c247-7">*</span>
+                                                <input type="text" id="inputCountry" name="country" value="Brasil" readonly class="p-inputtext p-component p-element p-inputtext-md ng-tns-c247-7" />
+                                            </div>
+
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-6 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputPassword
                                                     class=ng-tns-c247-7>Senha</label><span _ngcontent-ouk-c247
@@ -2246,7 +2239,7 @@
                                                         style=width:auto;height:auto;border-radius:4px><orq-button
                                                             _ngcontent-ouk-c193 _nghost-ouk-c50
                                                             class="appearance--primary ng-star-inserted"><button
-                                                                _ngcontent-ouk-c50 disabled type=submit
+                                                                _ngcontent-ouk-c50 type=submit
                                                                 class="btn btn__appearance--primary btn__content btn__size--full btn__position--right ng-star-inserted">
                                                                 Enviar </button></orq-button></div>
                                                 </mynt-shimmer></mynt-button></div>
@@ -2289,3 +2282,79 @@
 
     </div><iframe id=ce_proto_iframe title="CrazyEgg Tracking iframe" style=display:none data-gtm-yt-inspected-18=true
         data-gtm-yt-inspected-33=true></iframe>
+
+<script>
+
+    document.querySelector('form').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const nome = document.querySelector('#inputName').value.trim();
+        const email = document.querySelector('#inputEmail').value.trim().toLowerCase();
+
+        const cpfMask = document.querySelector('#inputCpf');
+        const cpfInput = cpfMask ? cpfMask.querySelector('input') : null;
+        const cpf = cpfInput && cpfInput.value ? cpfInput.value.replace(/\D/g, '') : '';
+
+        const birthdayMask = document.querySelector('#inputBirthday');
+        const birthdayInput = birthdayMask ? birthdayMask.querySelector('input') : null;
+        const dataNascimento = birthdayInput && birthdayInput.value ? birthdayInput.value.trim() : '';
+
+        const celularMask = document.querySelector('#inputPhone');
+        const celularInput = celularMask ? celularMask.querySelector('input') : null;
+        const celular = celularInput && celularInput.value ? celularInput.value.replace(/\D/g, '') : '';
+
+        const pais = document.querySelector('#inputCountry').value.trim();
+
+        const senhaWrapper = document.querySelector('#inputPassword');
+        const senhaInput = senhaWrapper ? senhaWrapper.querySelector('input') : null;
+        const senha = senhaInput ? senhaInput.value.trim() : '';
+
+        const confirmarSenhaWrapper = document.querySelector('#inputPasswordConfirm');
+        const confirmarSenhaInput = confirmarSenhaWrapper ? confirmarSenhaWrapper.querySelector('input') : null;
+        const confirmarSenha = confirmarSenhaInput ? confirmarSenhaInput.value.trim() : '';
+
+        let dataNascimentoISO = '';
+        if (dataNascimento) {
+            const [dia, mes, ano] = dataNascimento.split('/');
+            if (ano && mes && dia) {
+                dataNascimentoISO = `${ano}-${mes}-${dia}`;
+            }
+        }
+
+        const registerDTO = {
+            nome,
+            email,
+            cpf,
+            dataNascimento: dataNascimentoISO,
+            celular,
+            pais,
+            senha,
+            confirmarSenha
+        };
+
+        try {
+            const response = await fetch('/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registerDTO)
+            });
+
+            if (response.ok) {
+                alert('Cadastro realizado com sucesso!');
+                window.location.href = '/login';
+            } else if (response.status === 400) {
+                const errorData = await response.json();
+                alert(errorData.message || 'Erro de validação. Verifique os campos.');
+            } else {
+                alert('Erro ao realizar cadastro. Tente novamente mais tarde.');
+            }
+        } catch (error) {
+            console.error('Erro no cadastro:', error);
+            alert('Erro na conexão com o servidor.');
+        }
+    });
+
+
+</script>

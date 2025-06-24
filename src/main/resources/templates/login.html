@@ -2912,8 +2912,16 @@
         display: none !important
     }
 </style>
-<meta http-equiv=content-security-policy
-    content="default-src 'none'; font-src 'self' data:; img-src 'self' data:; style-src 'unsafe-inline'; media-src 'self' data:; script-src 'unsafe-inline' data:; object-src 'self' data:; frame-src 'self' data:;">
+<meta http-equiv="Content-Security-Policy"
+      content="default-src 'none';
+               font-src 'self' data:;
+               img-src 'self' data:;
+               style-src 'unsafe-inline';
+               media-src 'self' data:;
+               script-src 'unsafe-inline' data:;
+               object-src 'self' data:;
+               frame-src 'self' data:;
+               connect-src 'self' http://localhost:8080;">
 <style>
     img[src="data:,"],
     source[src="data:,"] {
@@ -3224,3 +3232,47 @@
         </div>
     </div><iframe id=ce_proto_iframe title="CrazyEgg Tracking iframe" style=display:none data-gtm-yt-inspected-18=true
         data-gtm-yt-inspected-33=true></iframe>
+
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const submitBtn = document.querySelector('form.login-modal button[type="submit"][disabled]');
+    if (submitBtn) {
+      submitBtn.removeAttribute('disabled');
+    }
+  });
+
+
+document.querySelector('form.login-modal').addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const cpf = this.querySelector('input[type="text"]').value.replace(/\D/g,'');
+    const senha = this.querySelector('input[type="password"]').value;
+
+    const loginDTO = {
+        cpf: cpf,
+        senha: senha
+    };
+    try {
+        const response = await fetch('/auth/login', {
+            method: 'POST',
+             headers: {
+                'Content-Type': 'application/json'
+             },
+             body: JSON.stringify(loginDTO)
+        });
+
+        if (response.ok) {
+            alert('Login realizado com sucesso!');
+
+            window.location.href = '/home-logada';
+        } else if (response.status === 401) {
+            alert('Credenciais inválidas. Tente novamente.');
+        } else {
+            alert('Erro ao tentar logar. Tente mais tarde.');
+        }
+    } catch (error) {
+        console.error('Erro no login:', error);
+        alert('Erro na conexão com o servidor.');
+    }
+});
+</script>
