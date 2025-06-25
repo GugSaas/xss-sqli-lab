@@ -2107,11 +2107,6 @@
                                                             _ngcontent-ouk-c245>Preencha seus dados</span></div><span
                                                         _ngcontent-ouk-c245 class=step-cicle></span>
                                                 </div>
-                                                <div _ngcontent-ouk-c245 class="step steps" style=display:block>
-                                                    <div _ngcontent-ouk-c245 class=step-text><span
-                                                            _ngcontent-ouk-c245>Confirme seu e-mail</span></div><span
-                                                        _ngcontent-ouk-c245 class=step-cicle></span>
-                                                </div>
                                                 <div _ngcontent-ouk-c245 class="step steps">
                                                     <div _ngcontent-ouk-c245 class=step-text><span
                                                             _ngcontent-ouk-c245>Conclusão</span></div><span
@@ -2144,7 +2139,7 @@
                                                     aria-describedby=inputEmail-help pinputtext required
                                                     class="p-inputtext p-component p-element p-inputtext-md ng-tns-c247-7 p-filled ng-dirty ng-valid ng-touched"
                                                     placeholder="Digite seu melhor e-mail"
-                                                    data-gtm-form-interact-field-id=0 value=silvasl2013@gmail.com></div>
+                                                    data-gtm-form-interact-field-id=0 value=""></div>
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-4 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputCpf
                                                     class=ng-tns-c247-7>CPF</label><span _ngcontent-ouk-c247
@@ -2180,14 +2175,9 @@
                                                         class="p-inputtext p-component p-element p-inputmask"
                                                         inputmode=numeric type=numeric placeholder="Digite seu número"
                                                         value></p-inputmask></div>
-                                            <div class="inputField col-lg-12 col-md-6 ng-tns-c247-7">
-                                                <label for="inputCountry" class="ng-tns-c247-7">País</label><span class="inputField--required ng-tns-c247-7">*</span>
-                                                <input type="text" id="inputCountry" name="country" value="Brasil" readonly class="p-inputtext p-component p-element p-inputtext-md ng-tns-c247-7" />
-                                            </div>
-
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-6 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputPassword
-                                                    class=ng-tns-c247-7>Senha</label><span _ngcontent-ouk-c247
+                                                    class=ng-tns-c247-7>Senha (Apenas números)</label><span _ngcontent-ouk-c247
                                                     class="inputField--required ng-tns-c247-7">*</span><p-password
                                                     _ngcontent-ouk-c247 formcontrolname=password id=inputPassword
                                                     type=password aria-describedby=inputPassword-help required
@@ -2203,7 +2193,7 @@
                                                 </p-password></div>
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-6 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputPasswordConfirm class=ng-tns-c247-7>
-                                                    Confirmar senha </label><span _ngcontent-ouk-c247
+                                                    Confirmar senha  (Apenas números)</label><span _ngcontent-ouk-c247
                                                     class="inputField--required ng-tns-c247-7">*</span><p-password
                                                     _ngcontent-ouk-c247 formcontrolname=confirmPassword
                                                     id=inputPasswordConfirm type=password
@@ -2303,7 +2293,6 @@
         const celularInput = celularMask ? celularMask.querySelector('input') : null;
         const celular = celularInput && celularInput.value ? celularInput.value.replace(/\D/g, '') : '';
 
-        const pais = document.querySelector('#inputCountry').value.trim();
 
         const senhaWrapper = document.querySelector('#inputPassword');
         const senhaInput = senhaWrapper ? senhaWrapper.querySelector('input') : null;
@@ -2327,7 +2316,6 @@
             cpf,
             dataNascimento: dataNascimentoISO,
             celular,
-            pais,
             senha,
             confirmarSenha
         };

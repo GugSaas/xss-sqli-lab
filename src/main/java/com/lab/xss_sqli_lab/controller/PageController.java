@@ -16,47 +16,47 @@ public class PageController {
         return "register";
     }
 
-    @GetMapping("/carteiras-logado")
+    @GetMapping("/carteiras")
     public String carteirasLogado() {
         return "carteiras-logado";
     }
 
-    @GetMapping("/conteudo-logado")
+    @GetMapping("/conteudo")
     public String conteudoLogado() {
         return "conteudo-logado";
     }
 
-    @GetMapping("/historico-logado")
+    @GetMapping("/historico")
     public String historicoLogado() {
         return "historico-logado";
     }
 
-    @GetMapping("/home-logada")
+    @GetMapping("/home")
     public String homeLogada() {
         return "home-logada";
     }
 
-    @GetMapping("/perfil-contas")
+    @GetMapping("/perfil/contas")
     public String perfilContas() {
         return "perfil-contas";
     }
 
-    @GetMapping("/perfil-dadospessoais")
+    @GetMapping("/perfil/dados")
     public String perfilDadosPessoais() {
         return "perfil-dadospessoais";
     }
 
-    @GetMapping("/perfil-notificacoes")
+    @GetMapping("/perfil/notificacoes")
     public String perfilNotificacoes() {
         return "perfil-notificacoes";
     }
 
-    @GetMapping("/perfil-seguranca")
+    @GetMapping("/perfil/seguranca")
     public String perfilSeguranca() {
         return "perfil-seguranca";
     }
 
-    @GetMapping("/perfil-suporte")
+    @GetMapping("/perfil/suporte")
     public String perfilSuporte() {
         return "perfil-suporte";
     }
