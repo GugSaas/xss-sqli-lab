@@ -39,7 +39,7 @@ public class AuthService {
         user.setCpf(dto.getCpf());
         user.setDataNascimento(dto.getDataNascimento());
         user.setCelular(dto.getCelular());
-        user.setPais(dto.getPais());
+//        user.setPais(dto.getPais());
         user.setPasswordHash(encoder.encode(dto.getSenha()));
 
         userRepository.save(user);

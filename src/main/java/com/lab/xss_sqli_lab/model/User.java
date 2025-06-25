@@ -2,13 +2,33 @@ package com.lab.xss_sqli_lab.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.type.descriptor.jdbc.VarcharJdbcType;
 
+import java.time.LocalDate;
+import java.util.UUID;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+//    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+    @Id
+    @JdbcType(VarcharJdbcType.class)
+    @Column(length = 36)
+    private UUID id;
+
+    @PrePersist
+    public void generateId() {
+        if (id == null) {
+            id = UUID.randomUUID();
+        }
+    }
 
     @Column(nullable = false)
     private String nome;
@@ -25,76 +45,12 @@ public class User {
     @Column(nullable = false)
     private String celular;
 
-    @Column(nullable = false)
-    private String pais;
+//    @Column(nullable = false)
+//    private String pais;
 
     @Column(nullable = false)
     @JsonIgnore
     private String passwordHash;
 
-    // Getters e setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public LocalDate getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(LocalDate dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    public String getCelular() {
-        return celular;
-    }
-
-    public void setCelular(String celular) {
-        this.celular = celular;
-    }
-
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
-    public String getPasswordHash() {
-        return passwordHash;
-    }
-
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
 }
 

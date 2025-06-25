@@ -23,8 +23,8 @@ public class RegisterDTO {
     @Pattern(regexp = "\\d{10,15}", message = "Celular deve conter apenas números") @NotBlank
     public String celular;
 
-    @NotBlank
-    public String pais;
+//    @NotBlank
+//    public String pais;
 
     @NotBlank
     @Pattern(regexp = "\\d{6,8}", message = "Senha deve conter entre 6 e 8 dígitos numéricos")
@@ -37,7 +37,7 @@ public class RegisterDTO {
         this.email = InputSanitizer.sanitizeEmail(this.email);
         this.cpf = InputSanitizer.sanitizeCpf(this.cpf);
         this.celular = InputSanitizer.sanitizeCelular(this.celular);
-        this.pais = InputSanitizer.sanitizePais(this.pais);
+//        this.pais = InputSanitizer.sanitizePais(this.pais);
         this.senha = this.senha != null ? this.senha.trim() : null;
         this.confirmarSenha = this.confirmarSenha != null ? this.confirmarSenha.trim() : null;
     }
