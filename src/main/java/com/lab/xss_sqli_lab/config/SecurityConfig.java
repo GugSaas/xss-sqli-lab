@@ -9,9 +9,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 
 @Configuration
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -25,20 +27,16 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
                 .csrf(csrf -> csrf
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .requireCsrfProtectionMatcher(request ->
-                                "POST".equalsIgnoreCase(request.getMethod()) ||
-                                        "PUT".equalsIgnoreCase(request.getMethod()) ||
-                                        "DELETE".equalsIgnoreCase(request.getMethod())
-                        )
-                        .ignoringRequestMatchers("/auth/**")
+                        .csrfTokenRepository(new HttpSessionCsrfTokenRepository())
+                        .ignoringRequestMatchers("/auth/**", "/profile/update")
                 )
                 .securityContext(securityContext -> securityContext
                         .securityContextRepository(new HttpSessionSecurityContextRepository())
                 );
 
         return http.build();
-
     }
 }
+
+
 
