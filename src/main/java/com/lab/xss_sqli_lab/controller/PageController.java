@@ -65,4 +65,9 @@ public class PageController {
     public String perfilSuporte() {
         return "perfil-suporte";
     }
+
+    @GetMapping("/suporte/tickets")
+    public String suporteTickets() {
+        return "suporte-tickets";
+    }
 }

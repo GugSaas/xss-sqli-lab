@@ -26,6 +26,9 @@ public class AuthService {
         if (userRepository.existsByCpf(dto.getCpf())) {
             throw new IllegalArgumentException("CPF já registrado");
         }
+        if (dto.getCpf() == null || dto.getCpf().length() != 11) {
+            throw new IllegalArgumentException("CPF inválido");
+        }
         if (userRepository.existsByEmail(dto.getEmail())) {
             throw new IllegalArgumentException("E-mail já registrado");
         }

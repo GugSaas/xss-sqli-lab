@@ -2334,7 +2334,8 @@
                 window.location.href = '/login';
             } else if (response.status === 400) {
                 const errorData = await response.json();
-                alert(errorData.message || 'Erro de validação. Verifique os campos.');
+                console.log("Erro detalhado:", errorData);
+                alert(errorData.message || errorData.error || 'Erro de validação. Verifique os campos.');
             } else {
                 alert('Erro ao realizar cadastro. Tente novamente mais tarde.');
             }
