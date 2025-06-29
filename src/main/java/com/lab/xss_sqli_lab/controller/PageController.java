@@ -26,6 +26,11 @@ public class PageController {
         return "conteudo-logado";
     }
 
+    @GetMapping("/negociar")
+    public String negociarLogado() {
+        return "negociar-logado";
+    }
+
     @GetMapping("/historico")
     public String historicoLogado() {
         return "historico-logado";
