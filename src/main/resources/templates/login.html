@@ -3264,7 +3264,7 @@ document.querySelector('form.login-modal').addEventListener('submit', async func
         if (response.ok) {
             alert('Login realizado com sucesso!');
 
-            window.location.href = '/home-logada';
+            window.location.href = '/home';
         } else if (response.status === 401) {
             alert('Credenciais inválidas. Tente novamente.');
         } else {

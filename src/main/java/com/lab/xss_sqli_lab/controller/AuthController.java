@@ -32,11 +32,23 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+//    @PostMapping("/register")
+//    public ResponseEntity<?> register(@Valid @RequestBody RegisterDTO dto) {
+//        authService.register(dto);
+//        return ResponseEntity.ok(Map.of("message", "Usuário registrado com sucesso"));
+//    }
+
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterDTO dto) {
-        authService.register(dto);
-        return ResponseEntity.ok(Map.of("message", "Usuário registrado com sucesso"));
+        try {
+            authService.register(dto);
+            return ResponseEntity.ok(Map.of("message", "Usuário registrado com sucesso"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
+        }
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO dto, HttpServletRequest request) {

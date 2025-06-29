@@ -21,5 +21,3 @@ public class UserService {
         entityManager.createNativeQuery(sql).executeUpdate();
     }
 }
-
-
