@@ -26,10 +26,11 @@ public class SecurityConfig {
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 )
-                .csrf(csrf -> csrf
-                        .csrfTokenRepository(new HttpSessionCsrfTokenRepository())
-                        .ignoringRequestMatchers("/auth/**", "/profile/update")
-                )
+//                .csrf(csrf -> csrf
+//                        .csrfTokenRepository(new HttpSessionCsrfTokenRepository())
+//                        .ignoringRequestMatchers("/auth/**", "/profile/update", "/tickets/**")
+//                )
+                .csrf(AbstractHttpConfigurer::disable)
                 .securityContext(securityContext -> securityContext
                         .securityContextRepository(new HttpSessionSecurityContextRepository())
                 );
