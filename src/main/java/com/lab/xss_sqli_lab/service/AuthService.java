@@ -23,6 +23,10 @@ public class AuthService {
     public void register(RegisterDTO dto) {
         dto.sanitize();
 
+        if (dto.getEmail() != null && dto.getEmail().endsWith("@btgpactual.com")) {
+            throw new IllegalArgumentException("Emails do domínio @btgpactual.com não são permitidos para cadastro.");
+        }
+
         if (userRepository.existsByCpf(dto.getCpf())) {
             throw new IllegalArgumentException("CPF já registrado");
         }
