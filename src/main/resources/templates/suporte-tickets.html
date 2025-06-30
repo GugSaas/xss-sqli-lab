@@ -91,12 +91,12 @@
 <header>
     <div class="logo">mynt <span style="font-size: 12px;">BTG Pactual</span></div>
     <nav>
-        <a href="#">Home</a>
-        <a href="#">Carteira</a>
-        <a href="#">Negociar</a>
-        <a href="#">Histórico</a>
-        <a href="#">Conteúdo</a>
-        <a href="#" class="active">Suporte</a>
+        <a href="http://localhost:8080/home">Home</a>
+        <a href="http://localhost:8080/carteira">Carteira</a>
+        <a href="http://localhost:8080/negociar">Negociar</a>
+        <a href="http://localhost:8080/historico">Histórico</a>
+        <a href="http://localhost:8080/conteudo">Conteúdo</a>
+        <a href="http://localhost:8080/suporte/tickets" class="active">Suporte</a>
     </nav>
 </header>
 
@@ -117,6 +117,14 @@
 </body>
 </html>
 <script>
+    function escapeHtml(unsafe) {
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
     async function carregarTickets() {
         try {
@@ -140,12 +148,15 @@
                 const ticketDiv = document.createElement('div');
                 ticketDiv.classList.add('ticket');
 
+                // Escapa apenas a mensagem
+                const mensagemEscapada = escapeHtml(ticket.mensagem);
+
                 ticketDiv.innerHTML = `
                     <div class="ticket-header">
                         <div class="ticket-user">${ticket.nomeUsuario}</div>
                         <div class="expand-icon">+</div>
                     </div>
-                    <div class="ticket-content">${ticket.mensagem}</div>
+                    <div class="ticket-content">${mensagemEscapada}</div>
                 `;
 
                 container.appendChild(ticketDiv);
