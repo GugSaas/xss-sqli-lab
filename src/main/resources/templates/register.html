@@ -18,6 +18,9 @@
 <meta name=facebook-domain-verification content=fkmpc1tejkcwpxs29kylymp12aj76i>
 <title>Faça seu registro e comece a investir | Mynt</title>
 <meta name=viewport content="width=device-width,initial-scale=1">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js"></script>
+</head>
 <style>
     @font-face {
         font-family: Moderat;
@@ -2055,6 +2058,14 @@
         --fixed-white: #ffffffff;
         --fixed-black: #000000ff
     }
+
+    .error-message {
+        color: #d32f2f;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        min-height: 1.2em;
+    }
+
 </style>
 <meta name=referrer content=no-referrer>
 <link rel=icon type=image/x-icon
@@ -2083,7 +2094,6 @@
 </style><noscript>
     <link rel="stylesheet" href="/styles.fe29c32238003b1b.css">
 </noscript>
-
 <body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2JWQFG" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript><app-root oyc ng-version=14.3.0
         mynt-version=2.64.0 _nghost-ouk-c206><router-outlet _ngcontent-ouk-c206
@@ -2130,7 +2140,9 @@
                                                     _ngcontent-ouk-c247 formcontrolname=username id=inputName type=text
                                                     aria-describedby=inputName-help pinputtext required
                                                     class="p-inputtext p-component p-element p-inputtext-md ng-tns-c247-7 ng-untouched ng-pristine ng-invalid"
-                                                    placeholder="Digite seu nome completo" value></div>
+                                                    placeholder="Digite seu nome completo" value>
+                                                <div class="error-message" id="errorNome"></div>
+                                            </div>
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-6 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputEmail
                                                     class=ng-tns-c247-7>Email</label><span _ngcontent-ouk-c247
@@ -2139,7 +2151,9 @@
                                                     aria-describedby=inputEmail-help pinputtext required
                                                     class="p-inputtext p-component p-element p-inputtext-md ng-tns-c247-7 p-filled ng-dirty ng-valid ng-touched"
                                                     placeholder="Digite seu melhor e-mail"
-                                                    data-gtm-form-interact-field-id=0 value=""></div>
+                                                    data-gtm-form-interact-field-id=0 value="">
+                                                <div class="error-message" id="errorEmail"></div>
+                                            </div>
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-4 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputCpf
                                                     class=ng-tns-c247-7>CPF</label><span _ngcontent-ouk-c247
@@ -2150,19 +2164,25 @@
                                                         pinputtext pautofocus
                                                         class="p-inputtext p-component p-element p-inputmask"
                                                         inputmode=numeric type=numeric placeholder="Digite seu CPF"
-                                                        value></p-inputmask></div>
+                                                        value></p-inputmask>
+                                                <div class="error-message" id="errorCpf"></div>
+                                            </div>
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-4 col-md-6 ng-tns-c247-7">
-                                                <label _ngcontent-ouk-c247 for=inputBirthday class=ng-tns-c247-7>Data de
-                                                    nascimento</label><span _ngcontent-ouk-c247
-                                                    class="inputField--required ng-tns-c247-7">*</span><p-inputmask
-                                                    _ngcontent-ouk-c247 numericinput formcontrolname=birthday
-                                                    id=inputBirthday type=numeric aria-describedby=inputBirthday-help
-                                                    mask=99/99/9999
-                                                    class="p-element p-inputtext-md ng-tns-c247-7 ng-untouched ng-pristine ng-invalid"><input
-                                                        pinputtext pautofocus
-                                                        class="p-inputtext p-component p-element p-inputmask"
-                                                        inputmode=numeric type=numeric placeholder="Digite a data"
-                                                        value></p-inputmask></div>
+                                                <label _ngcontent-ouk-c247 for="inputBirthday" class="ng-tns-c247-7">Data de nascimento</label><span _ngcontent-ouk-c247 class="inputField--required ng-tns-c247-7">*</span>
+                                                <input
+                                                        _ngcontent-ouk-c247
+                                                        formcontrolname="birthday"
+                                                        id="inputBirthday"
+                                                        type="date"
+                                                        aria-describedby="inputBirthday-help"
+                                                        class="p-inputtext p-component p-element p-inputtext-md ng-tns-c247-7"
+                                                        placeholder="Selecione sua data"
+                                                >
+
+                                                <div class="error-message" id="errorDataNascimento"></div>
+                                            </div>
+
+
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-4 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputPhone
                                                     class=ng-tns-c247-7>Celular</label><span _ngcontent-ouk-c247
@@ -2174,7 +2194,9 @@
                                                         pinputtext pautofocus
                                                         class="p-inputtext p-component p-element p-inputmask"
                                                         inputmode=numeric type=numeric placeholder="Digite seu número"
-                                                        value></p-inputmask></div>
+                                                        value></p-inputmask>
+                                                <div class="error-message" id="errorCelular"></div>
+                                            </div>
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-6 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputPassword
                                                     class=ng-tns-c247-7>Senha (Apenas números)</label><span _ngcontent-ouk-c247
@@ -2190,7 +2212,9 @@
                                                             type=password placeholder="Digite sua senha"
                                                             data-gtm-form-interact-field-id=1><i
                                                             class="ng-tns-c244-8 pi pi-eye ng-star-inserted"></i></div>
-                                                </p-password></div>
+                                                </p-password>
+                                                <div class="error-message" id="errorSenha"></div>
+                                            </div>
                                             <div _ngcontent-ouk-c247 class="inputField col-lg-6 col-md-6 ng-tns-c247-7">
                                                 <label _ngcontent-ouk-c247 for=inputPasswordConfirm class=ng-tns-c247-7>
                                                     Confirmar senha  (Apenas números)</label><span _ngcontent-ouk-c247
@@ -2206,7 +2230,9 @@
                                                             class="p-inputtext p-component p-element ng-tns-c244-9 p-password-input"
                                                             type=password placeholder="Confirme sua senha"><i
                                                             class="ng-tns-c244-9 pi pi-eye ng-star-inserted"></i></div>
-                                                </p-password></div>
+                                                </p-password>
+                                                <div class="error-message" id="errorConfirmarSenha"></div>
+                                            </div>
                                         </div>
                                         <div _ngcontent-ouk-c247
                                             class="inputField col-lg-12 col-md-12 ng-tns-c247-7 ng-trigger ng-trigger-grow"
@@ -2275,74 +2301,221 @@
 
 <script>
 
-    document.querySelector('form').addEventListener('submit', async function (event) {
-        event.preventDefault();
+    function showError(inputId, message) {
+        const errorDiv = document.getElementById('error' + inputId);
+        if (errorDiv) {
+            errorDiv.textContent = message;
+            errorDiv.style.color = message ? 'red' : '';
+        }
+    }
 
-        const nome = document.querySelector('#inputName').value.trim();
-        const email = document.querySelector('#inputEmail').value.trim().toLowerCase();
+    function sanitize(value) {
+        return DOMPurify.sanitize(value.trim());
+    }
 
-        const cpfMask = document.querySelector('#inputCpf');
-        const cpfInput = cpfMask ? cpfMask.querySelector('input') : null;
-        const cpf = cpfInput && cpfInput.value ? cpfInput.value.replace(/\D/g, '') : '';
+    function validateNome(nome) {
+        if (!nome || nome.trim().split(/\s+/).filter(w => w.length >= 2).length < 2) {
+            return 'Digite seu nome completo.';
+        }
+        return '';
+    }
 
-        const birthdayMask = document.querySelector('#inputBirthday');
-        const birthdayInput = birthdayMask ? birthdayMask.querySelector('input') : null;
-        const dataNascimento = birthdayInput && birthdayInput.value ? birthdayInput.value.trim() : '';
+    function validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(email)) {
+            return 'Email inválido.';
+        }
+        return '';
+    }
 
-        const celularMask = document.querySelector('#inputPhone');
-        const celularInput = celularMask ? celularMask.querySelector('input') : null;
-        const celular = celularInput && celularInput.value ? celularInput.value.replace(/\D/g, '') : '';
+    function validateCelular(celular) {
+        const digits = celular.replace(/\D/g, '');
+        if (!/^\d{11}$/.test(digits)) {
+            return 'Celular deve conter 11 dígitos (DDD + número).';
+        }
+        return '';
+    }
 
+    function validateSenha(senha) {
+        if (!/^\d{6,8}$/.test(senha)) {
+            return 'Senha deve ter entre 6 e 8 dígitos numéricos.';
+        }
+        let increasing = true, decreasing = true;
+        for (let i = 1; i < senha.length; i++) {
+            if (parseInt(senha[i]) !== (parseInt(senha[i-1]) + 1)) increasing = false;
+            if (parseInt(senha[i]) !== (parseInt(senha[i-1]) - 1)) decreasing = false;
+        }
+        if (increasing || decreasing) {
+            return 'Senha não pode ser sequência numérica.';
+        }
+        return '';
+    }
 
-        const senhaWrapper = document.querySelector('#inputPassword');
-        const senhaInput = senhaWrapper ? senhaWrapper.querySelector('input') : null;
-        const senha = senhaInput ? senhaInput.value.trim() : '';
+    function validateConfirmarSenha(senha, confirmarSenha) {
+        if (senha !== confirmarSenha) {
+            return 'Senhas não coincidem.';
+        }
+        return '';
+    }
 
-        const confirmarSenhaWrapper = document.querySelector('#inputPasswordConfirm');
-        const confirmarSenhaInput = confirmarSenhaWrapper ? confirmarSenhaWrapper.querySelector('input') : null;
-        const confirmarSenha = confirmarSenhaInput ? confirmarSenhaInput.value.trim() : '';
+    function validateDataNascimento(dataNascimento) {
+        if (!dataNascimento) return 'Data inválida.';
 
-        let dataNascimentoISO = '';
-        if (dataNascimento) {
-            const [dia, mes, ano] = dataNascimento.split('/');
-            if (ano && mes && dia) {
-                dataNascimentoISO = `${ano}-${mes}-${dia}`;
-            }
+        const partes = dataNascimento.split('-');
+        if (partes.length !== 3) return 'Data inválida.';
+
+        const ano = parseInt(partes[0], 10);
+        const mes = parseInt(partes[1], 10) - 1;
+        const dia = parseInt(partes[2], 10);
+
+        if (ano < 1900) return 'Ano deve ser a partir de 1900.';
+
+        const data = new Date(ano, mes, dia);
+        if (data.getFullYear() !== ano || data.getMonth() !== mes || data.getDate() !== dia) {
+            return 'Data inválida.';
         }
 
-        const registerDTO = {
-            nome,
-            email,
-            cpf,
-            dataNascimento: dataNascimentoISO,
-            celular,
-            senha,
-            confirmarSenha
+        const hoje = new Date();
+        let idade = hoje.getFullYear() - ano;
+        if (hoje.getMonth() < mes || (hoje.getMonth() === mes && hoje.getDate() < dia)) {
+            idade--;
+        }
+        if (idade < 18) return 'Você deve ter pelo menos 18 anos.';
+
+        return '';
+    }
+
+
+    function validateCPF(cpf) {
+        cpf = cpf.replace(/\D/g, '');
+
+        if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) {
+            return 'CPF inválido.';
+        }
+
+        const digits = cpf.split('').map(Number);
+
+        let sum = 0;
+        for (let i = 0; i < 9; i++) {
+            sum += digits[i] * (10 - i);
+        }
+
+        let dv1 = 11 - (sum % 11);
+        dv1 = dv1 > 9 ? 0 : dv1;
+
+        if (digits[9] !== dv1) return 'CPF inválido.';
+
+        sum = 0;
+        for (let i = 0; i < 10; i++) {
+            sum += digits[i] * (11 - i);
+        }
+
+        let dv2 = 11 - (sum % 11);
+        dv2 = dv2 > 9 ? 0 : dv2;
+
+        if (digits[10] !== dv2) return 'CPF inválido.';
+        return '';
+    }
+
+    function validateAll() {
+        const errors = [];
+
+        const nome = nomeInput.value;
+        const email = emailInput.value;
+        const celular = celularInput.value;
+        const senha = senhaInput.value;
+        const confirmarSenha = confirmarSenhaInput.value;
+        const cpf = cpfInput.value;
+        const dataNascimento = dataNascimentoInput.value;
+
+        errors.push(validateNome(nome));
+        errors.push(validateEmail(email));
+        errors.push(validateCelular(celular));
+        errors.push(validateSenha(senha));
+        errors.push(validateConfirmarSenha(senha, confirmarSenha));
+        errors.push(validateCPF(cpf));
+        errors.push(validateDataNascimento(dataNascimento));
+
+        showError('Nome', errors[0]);
+        showError('Email', errors[1]);
+        showError('Celular', errors[2]);
+        showError('Senha', errors[3]);
+        showError('ConfirmarSenha', errors[4]);
+        showError('Cpf', errors[5]);
+        showError('DataNascimento', errors[6]);
+
+        return errors.every(err => err === '');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        nomeInput = document.getElementById('inputName');
+        emailInput = document.getElementById('inputEmail');
+        celularInput = document.querySelector('#inputPhone input');
+        senhaInput = document.querySelector('#inputPassword input');
+        confirmarSenhaInput = document.querySelector('#inputPasswordConfirm input');
+        cpfInput = document.querySelector('#inputCpf input');
+        dataNascimentoInput = document.getElementById('inputBirthday');
+
+        console.log({ nomeInput, emailInput, celularInput, senhaInput, confirmarSenhaInput, cpfInput, dataNascimentoInput });
+
+
+        nomeInput.oninput = () => showError('Nome', validateNome(nomeInput.value));
+        emailInput.oninput = () => showError('Email', validateEmail(emailInput.value));
+        celularInput.oninput = () => showError('Celular', validateCelular(celularInput.value));
+        senhaInput.oninput = () => {
+            showError('Senha', validateSenha(senhaInput.value));
+            showError('ConfirmarSenha', validateConfirmarSenha(senhaInput.value, confirmarSenhaInput.value));
         };
+        confirmarSenhaInput.oninput = () => showError('ConfirmarSenha', validateConfirmarSenha(senhaInput.value, confirmarSenhaInput.value));
+        cpfInput.oninput = () => showError('Cpf', validateCPF(cpfInput.value));
+        dataNascimentoInput.oninput = () => showError('DataNascimento', validateDataNascimento(dataNascimentoInput.value));
 
-        try {
-            const response = await fetch('/auth/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(registerDTO)
-            });
+        document.querySelector('form').addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-            if (response.ok) {
-                alert('Cadastro realizado com sucesso!');
-                window.location.href = '/login';
-            } else if (response.status === 400) {
-                const errorData = await response.json();
-                console.log("Erro detalhado:", errorData);
-                alert(errorData.message || errorData.error || 'Erro de validação. Verifique os campos.');
-            } else {
-                alert('Erro ao realizar cadastro. Tente novamente mais tarde.');
+            if (!validateAll()) {
+                alert('Corrija os erros antes de enviar o formulário.');
+                return;
             }
-        } catch (error) {
-            console.error('Erro no cadastro:', error);
-            alert('Erro na conexão com o servidor.');
-        }
+
+            if (emailInput.value.toLowerCase().endsWith('@btgpactual.com')) {
+                alert('Emails do domínio @btgpactual.com não são permitidos para cadastro.');
+                return;
+            }
+
+
+            const registerDTO = {
+                nome: DOMPurify.sanitize(nomeInput.value.trim()),
+                email: DOMPurify.sanitize(emailInput.value.trim().toLowerCase()),
+                cpf: cpfInput.value.replace(/\D/g, ''),
+                dataNascimento: DOMPurify.sanitize(dataNascimentoInput.value.trim()),
+                celular: celularInput.value.replace(/\D/g, ''), 
+                senha: DOMPurify.sanitize(senhaInput.value.trim()),
+                confirmarSenha: DOMPurify.sanitize(confirmarSenhaInput.value.trim())
+            };
+
+
+            try {
+                const response = await fetch('/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(registerDTO)
+                });
+
+                if (response.ok) {
+                    alert('Cadastro realizado com sucesso!');
+                    window.location.href = '/login';
+                } else if (response.status === 400) {
+                    const errorData = await response.json();
+                    alert(errorData.message || errorData.error || 'Erro de validação. Verifique os campos.');
+                } else {
+                    alert('Erro ao realizar cadastro. Tente novamente mais tarde.');
+                }
+            } catch (error) {
+                console.error('Erro no cadastro:', error);
+                alert('Erro na conexão com o servidor.');
+            }
+        });
     });
 
 
